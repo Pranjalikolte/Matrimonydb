@@ -12,7 +12,7 @@ public class MatrimonyBackendApplication {
 		SpringApplication.run(MatrimonyBackendApplication.class, args);
 
 
-		System.out.println("Program running finely : \t\n\n\n\n");
+		System.out.println("Program running finely : \t\n\n");
 	}
 
 	@Bean
