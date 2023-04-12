@@ -2,6 +2,7 @@ package com.matrimony.codewithnitin.entity;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -20,6 +21,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -76,23 +78,40 @@ public class User implements UserDetails {
 	@UpdateTimestamp
 	private LocalDateTime dateUpdated;
 
-	@Enumerated(EnumType.STRING)
-	private Role role = Role.USER;
-
 //	@Enumerated(EnumType.STRING)
-//    @Builder.Default
-//    private Role role = Role.USER;
+//	private Role role = Role.USER;
+	
+	 @Enumerated(EnumType.STRING)
+	  private Role role;
+	
+
+
 	
 	@OneToOne(mappedBy = "user", cascade = CascadeType.MERGE)
 	private Profile profile;
 
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	private Token token;
+	
+	//usermember mapping
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<UserMember> userMemberships;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return List.of(new SimpleGrantedAuthority(role.name()));
 	}
+	
+	
+	
+//	 @Override
+//	    public Collection<? extends GrantedAuthority> getAuthorities() {
+//	        if (role != null) {
+//	            return List.of(new SimpleGrantedAuthority(role.name()));
+//	        } else {
+//	            return Collections.emptyList();
+//	        }
+//	    }
 
 	@Override
 	public String getPassword() {
@@ -129,5 +148,10 @@ public class User implements UserDetails {
 		@JoinColumn(name = "MembershipPlan_Id", referencedColumnName = "MemberPlanId")
 		// @JsonIgnore
 		private MembershipPlan membershipPlan;
+
+		
+
+		
+
 		 
 }
