@@ -4,6 +4,13 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+###  ---------------------    ###
+
+src/main/resources/
+
+###  ---------------------    ###
+
+
 ### STS ###
 .apt_generated
 .classpath
@@ -20,6 +27,7 @@ target/
 *.ipr
 
 ### NetBeans ###
+# src/main/resources/
 /nbproject/private/
 /nbbuild/
 /dist/
@@ -31,3 +39,6 @@ build/
 
 ### VS Code ###
 .vscode/
+# *.properties
+src/main/resources/application.properties
+src/main/resources/application.properties

@@ -10,6 +10,9 @@ public class MatrimonyBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MatrimonyBackendApplication.class, args);
+
+
+		System.out.println("Program running finely : \t\n\n");
 	}
 
 	@Bean
